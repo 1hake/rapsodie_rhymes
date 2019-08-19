@@ -1,0 +1,47 @@
+.App-link {
+  color: #67bfcd;
+}
+
+
+
+.am-tabs-default-bar-tab {
+  background-color: #67bfcd !important;
+  font-size: 1.5em;
+  color: #ffffff !important;
+  font-size: 1.5em !important;
+  font-size: 20px !important;
+  height: 50px !important;
+}
+
+.am-tabs-default-bar-tab-active {
+  font-size: 1.5em !important;
+  font-size: 25px !important;
+  font-weight: bold !important;
+  height: 50px !important;
+  background-color: #ffffff !important;
+  color: #67bfcd !important;
+  box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.75) !important;
+  z-index: 1;
+
+}
+
+.MuiExpansionPanelSummary-content-49> :last-child {
+  padding-right: 0px !important;
+}
+
+.MuiExpansionPanelSummary-content-52> :last-child {
+  padding-right: 0px !important;
+}
+
+.am-tabs-default-bar-underline {
+  border: 1px #67bfcd solid !important;
+}
+
+.am-tabs-default-bar-top,
+.am-tabs-default-bar-bottom {
+  justify-content: center !important;
+}
+
+.am-tabs-default-bar {
+  width: '80%' !important;
+}

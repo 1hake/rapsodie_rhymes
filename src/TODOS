@@ -1,0 +1,17 @@
+- Product Manager : 
+    - Change reducer Object
+    - ADD Product
+    - ADD MAILLON
+- Position X Y 
+- FIX CSS INNER APP (Multi Import with variables)
+- Screen Size Mobile
+- Change product Image (Use Indexes) 
+- Font / font color
+- product image size OK
+- search for typography component to modify text
+- header logo same as back 
+- Local database to save changes
+
+
+IMAGE SIZE ON LOAD                             DONE
+CONVERT 0 to 100 to another interval           DONE
