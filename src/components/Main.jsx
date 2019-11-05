@@ -6,8 +6,15 @@ import MyInput from "./MyInput";
 import SentenceList from "./SentenceList";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 import MainInput from "./MainInput";
+import { splitLines } from "./actions";
 
 class Main extends Component {
+	componentDidMount() {
+		navigator.clipboard.readText().then(text => {
+			console.log(text);
+			this.props.splitLines(text);
+		});
+	}
 	render() {
 		const { classes } = this.props;
 		return (
@@ -18,9 +25,9 @@ class Main extends Component {
 				className={classes.root}
 				direction={"column"}>
 				<Grid container justify={"center"} xs={10}>
-					<MyInput />
+					{/* <MyInput /> */}
 
-					<MainInput />
+					{/* <MainInput /> */}
 				</Grid>
 				<Grid justify={"center"} container xs={12}>
 					{/* <RhymeList /> */}
@@ -40,5 +47,5 @@ const style = {
 
 export default connect(
 	state => ({}),
-	{}
+	{ splitLines }
 )(withStyles(style)(Main));

@@ -1,14 +1,15 @@
-import { applyMiddleware, createStore } from 'redux';
-import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
-import { ACTIONS } from './actions';
+import { applyMiddleware, createStore } from "redux";
+import createLogger from "redux-logger";
+import thunk from "redux-thunk";
+import { ACTIONS } from "./actions";
 
 function reducer(
 	state = {
-		currentSentence: '',
+		currentSentence: "",
 		error: false,
 		loading: false,
-		rhymeBlock: []
+		rhymeBlock: [],
+		sentence: "",
 	},
 	action
 ) {
@@ -16,47 +17,64 @@ function reducer(
 		case ACTIONS.RESET:
 			return {
 				...state,
-				rhymeBlock: []
+				rhymeBlock: [],
 			};
 
 		case ACTIONS.STORE_DATA:
+			console.log("storedata", action.index);
 			return {
 				...state,
 				rhymeBlock: [
 					...state.rhymeBlock,
-					{ indexSentence: action.indexSentence, index: action.index, word: action.word, rhymes: action.data }
-				]
-			};
-		case ACTIONS.STORE_TRANSFORMED:
-			return {
-				...state,
-				transformedSentence: [ ...state.transformedSentence, action.data ]
-			};
-		case ACTIONS.STORE_SENTENCE:
-			return {
-				...state,
-				currentSentence: action.data,
-				currentWordList: action.data.replace(/'|-/gi, ' ').split(' ')
+					{
+						indexSentence: action.indexSentence,
+						index: action.index,
+						word: action.word,
+						rhymes: action.data,
+					},
+				],
 			};
 		case ACTIONS.SET_LOADING:
 			return {
 				...state,
 				loading: true,
-				transformedSentence: []
 			};
 		case ACTIONS.SET_LOADING_FALSE:
 			return {
 				...state,
-				loading: false
+				loading: false,
 			};
 		case ACTIONS.SET_ERROR:
 			return {
 				...state,
-				error: true
+				error: true,
 			};
 		case ACTIONS.DO_NOTHING:
 			return {
-				...state
+				...state,
+			};
+		case "STORE_STUFF":
+			return {
+				...state,
+				sentence: action.data,
+			};
+		case "DELETE_WORD":
+			const currentList = state.rhymeBlock;
+			console.log("currentList", currentList, action);
+			const newList = currentList.filter(elem => {
+				console.log(elem);
+				if (action.indexSentence == elem.indexSentence) {
+					if (action.index - 1 == elem.index) {
+						return false;
+					}
+					return true;
+				}
+				return true;
+			});
+			console.log("newList", newList);
+			return {
+				...state,
+				rhymeBlock: newList,
 			};
 		default:
 			return state;

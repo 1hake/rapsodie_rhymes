@@ -24,8 +24,6 @@ class SentenceList extends Component {
 	};
 
 	setPanelClose() {
-		console.log("heyyy");
-
 		this.setState(() => ({
 			open: false,
 		}));
@@ -37,7 +35,6 @@ class SentenceList extends Component {
 			return a.indexSentence - b.indexSentence;
 		});
 		let sentences = groupBy(sortedRhymes, "indexSentence");
-		console.log("lastsentence", this.state);
 		if (sentences)
 			return (
 				<div className={classes.root}>
@@ -73,7 +70,7 @@ const style = {
 		borderRadius: "25px",
 		backgroundColor: "#303030",
 		transition: "1s ease",
-		minHeight: window.innerHeight / 1.2,
+		minHeight: "90vh",
 	},
 };
 
