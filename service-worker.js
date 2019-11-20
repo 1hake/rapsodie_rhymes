@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/rapsodie-rhymes/precache-manifest.2a9f23a7653e43b26175e00b5848faf4.js"
+  "/rapsodie-rhymes/precache-manifest.5e522300f492b314dc82a9049b6547b5.js"
 );
 
 workbox.clientsClaim();
