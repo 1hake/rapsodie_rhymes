@@ -35,29 +35,52 @@ class SentenceList extends Component {
       return a.indexSentence - b.indexSentence;
     });
     let sentences = groupBy(sortedRhymes, "indexSentence");
-    if (sentences)
-      return (
-        <div className={classes.root}>
-          {sentences &&
-            Object.keys(sentences).map(key => {
-              return (
-                <RhymeList
-                  content={sentences[key]}
-                  isClicked={this.wordIsClicked}
-                />
-              );
-            })}
-          <Panel
-            value={this.state.value}
-            close={() => this.setPanelClose()}
-            open={this.state.open}
-          />
-        </div>
-      );
+    return sortedRhymes.length > 0 ? (
+      <div className={classes.root}>
+        {Object.keys(sentences).map(key => {
+          return (
+            <RhymeList
+              content={sentences[key]}
+              isClicked={this.wordIsClicked}
+            />
+          );
+        })}
+        <Panel
+          value={this.state.value}
+          close={() => this.setPanelClose()}
+          open={this.state.open}
+        />
+      </div>
+    ) : (
+      <div className={classes.noSentence}>
+        Type your text directly or paste lyrics with ctrl + v
+        <Panel
+          value={this.state.value}
+          close={() => this.setPanelClose()}
+          open={this.state.open}
+        />
+      </div>
+    );
   }
 }
 
 const style = {
+  noSentence: {
+    display: "flex",
+    color: "white",
+    fontSize: "3em",
+    fontFamily: "Barlow",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    flexWrap: "nowrap",
+    width: "100%",
+    boxShadow: "0px 2px 21px -17px rgba(0,0,0,0.75)",
+    borderRadius: "25px",
+    backgroundColor: "#303030",
+    transition: "1s ease",
+    minHeight: "90vh"
+  },
   root: {
     display: "flex",
     alignItems: "flex-start",
@@ -69,7 +92,7 @@ const style = {
     boxShadow: "0px 2px 21px -17px rgba(0,0,0,0.75)",
     borderRadius: "25px",
     backgroundColor: "#303030",
-    transition: "1s ease",
+
     minHeight: "90vh"
   }
 };

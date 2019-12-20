@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid, LinearProgress } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -8,6 +8,7 @@ import KeyboardEventHandler from "react-keyboard-event-handler";
 import MainInput from "../inputs/MainInput";
 import { splitLines } from "../actions";
 import { example } from "../../constants/constants";
+import { patternize } from "../patternize";
 
 class Main extends Component {
   componentDidMount() {
@@ -30,6 +31,22 @@ class Main extends Component {
 
           <MainInput />
         </Grid>
+        <Grid container justify={"center"} xs={12}>
+          <div
+            onClick={() => patternize(this.props.rhymeBlock)}
+            style={{
+              textAlign: "center",
+              fontFamily: "Barlow",
+              fontSize: "2em",
+              height: "40px",
+              color: "white",
+              width: "100%",
+              backgroundColor: "#453df5"
+            }}
+          >
+            Patternize
+          </div>
+        </Grid>
         <Grid justify={"center"} container xs={12}>
           {/* <RhymeList /> */}
           <SentenceList />
@@ -46,4 +63,7 @@ const style = {
   }
 };
 
-export default connect(state => ({}), { splitLines })(withStyles(style)(Main));
+export default connect(
+  state => ({ rhymeBlock: state.rhymeBlock, loading: state.loading }),
+  { splitLines }
+)(withStyles(style)(Main));

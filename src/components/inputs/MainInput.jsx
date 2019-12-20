@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 import { useSelector, useDispatch } from "react-redux";
 import { handleKey, example } from "../../constants/constants";
-import { reset, getWord } from "../actions";
+import { reset, getWord, setLoading } from "../actions";
 
 function MainInput(props) {
   const [word, setWord] = useState("");
@@ -15,6 +15,7 @@ function MainInput(props) {
   const storeWord = data => dispatch({ type: "STORE_STUFF", data: data });
   function convert(string) {
     var lines = string.split("\n");
+    dispatch(setLoading(true));
     dispatch(reset());
     lines.map((line, indexSentence) => {
       var sentence = line.split(/[\s,'’"-;]+/);
@@ -22,6 +23,7 @@ function MainInput(props) {
         dispatch(getWord(item, index, indexSentence));
       });
     });
+
     storeWord(word);
   }
   return (

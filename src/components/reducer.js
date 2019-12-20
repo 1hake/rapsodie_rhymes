@@ -36,7 +36,7 @@ function reducer(
     case ACTIONS.SET_LOADING:
       return {
         ...state,
-        loading: true
+        loading: action.data
       };
     case ACTIONS.SET_LOADING_FALSE:
       return {

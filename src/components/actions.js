@@ -16,10 +16,21 @@ export function doNothing() {
   };
 }
 
+export function setLoading(bool) {
+  return {
+    type: "SET_LOADING",
+    data: bool
+  };
+}
+
 export function reset() {
   return {
     type: "RESET"
   };
+}
+
+export function getRhymesPattern(rhymeBlock) {
+  return null;
 }
 
 export function storeWord(original, pattern) {
