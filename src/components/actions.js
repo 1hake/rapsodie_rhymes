@@ -6,8 +6,24 @@ export const ACTIONS = {
   SET_LOADING: "SET_LOADING",
   SET_LOADING_FALSE: "SET_LOADING_FALSE",
   STORE_DATA: "STORE_DATA",
-  RESET: "RESET"
+  RESET: "RESET",
+  ADD_MATCHES: "ADD_MATCHES",
+  OPEN_PANEL: "OPEN_PANEL",
+  CLOSE_PANEL: "CLOSE_PANEL"
 };
+
+export function openPanel(word) {
+  return {
+    type: "OPEN_PANEL",
+    data: word
+  };
+}
+
+export function closePanel() {
+  return {
+    type: "CLOSE_PANEL"
+  };
+}
 
 export function doNothing() {
   return {

@@ -8,12 +8,12 @@ import { removeDiacritics } from "../../shared/Tools";
 
 const useStyles = makeStyles({
   item: {
-    fontSize: "0.7em",
-    minWidth: "15px",
+    fontSize: "0.6em",
+
     fontWeight: "bold",
     color: "black",
     borderRadius: "25px",
-    padding: "5px",
+    padding: "4px",
     alignItems: "center",
     margin: "2px",
     display: "flex",
@@ -50,14 +50,11 @@ const useStyles = makeStyles({
 
 function VowContainer(props) {
   const classes = useStyles();
-  console.log(props.elem);
   return props.elem && props.elem.rhymes ? (
     props.elem.rhymes.map((text, index) => {
       // HERE CHANGE
       let hello = [...text];
-      hello.map(item => {
-        console.log(item.charCodeAt(0));
-      });
+      hello.map(item => {});
       const vow = text.replace(consPattern, "");
 
       // const vow = text;
@@ -81,7 +78,7 @@ function VowContainer(props) {
       );
     })
   ) : (
-    <NoItem isClicked={props.isClicked} word={props.elem.word} />
+    <NoItem word={props.elem.word} />
   );
 }
 

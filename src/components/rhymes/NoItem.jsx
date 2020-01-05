@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { Grow } from "@material-ui/core";
+import { openPanel } from "../actions";
 
 class NoItem extends Component {
   render() {
@@ -9,7 +10,7 @@ class NoItem extends Component {
     return (
       <Grow in={true} unmountOnExit>
         <p
-          onClick={() => this.props.isClicked(this.props.word)}
+          onClick={() => this.props.openPanel(this.props.word)}
           className={classes.noItem}
         >
           {this.props.word}
@@ -37,7 +38,4 @@ const style = {
   }
 };
 
-export default connect(
-  state => ({}),
-  {}
-)(withStyles(style)(NoItem));
+export default connect(state => ({}), { openPanel })(withStyles(style)(NoItem));

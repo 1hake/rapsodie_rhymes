@@ -9,6 +9,7 @@ import MainInput from "../inputs/MainInput";
 import { splitLines } from "../actions";
 import { example } from "../../constants/constants";
 import { patternize } from "../patternize";
+import MatchesContainer from "../rhymes/MatchesContainer";
 
 class Main extends Component {
   componentDidMount() {
@@ -33,7 +34,7 @@ class Main extends Component {
         </Grid>
         <Grid container justify={"center"} xs={12}>
           <div
-            onClick={() => patternize(this.props.rhymeBlock)}
+            onClick={() => this.props.patternize(this.props.rhymeBlock)}
             style={{
               textAlign: "center",
               fontFamily: "Barlow",
@@ -49,7 +50,12 @@ class Main extends Component {
         </Grid>
         <Grid justify={"center"} container xs={12}>
           {/* <RhymeList /> */}
-          <SentenceList />
+          <Grid xs={8}>
+            <SentenceList />
+          </Grid>
+          <Grid xs={4}>
+            <MatchesContainer />
+          </Grid>
         </Grid>
       </Grid>
     );
@@ -65,5 +71,5 @@ const style = {
 
 export default connect(
   state => ({ rhymeBlock: state.rhymeBlock, loading: state.loading }),
-  { splitLines }
+  { splitLines, patternize }
 )(withStyles(style)(Main));

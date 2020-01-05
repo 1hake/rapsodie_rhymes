@@ -9,15 +9,33 @@ function reducer(
     error: false,
     loading: false,
     rhymeBlock: [],
-    sentence: ""
+    sentence: "",
+    matches: null,
+    panelOpen: false
   },
   action
 ) {
   switch (action.type) {
+    case ACTIONS.OPEN_PANEL:
+      return {
+        ...state,
+        panelOpen: action.data
+      };
+    case ACTIONS.CLOSE_PANEL:
+      return {
+        ...state,
+        panelOpen: false
+      };
+    case ACTIONS.ADD_MATCHES:
+      return {
+        ...state,
+        matches: action.data
+      };
     case ACTIONS.RESET:
       return {
         ...state,
-        rhymeBlock: []
+        rhymeBlock: [],
+        matches: null
       };
 
     case ACTIONS.STORE_DATA:
@@ -59,9 +77,7 @@ function reducer(
       };
     case "DELETE_WORD":
       const currentList = state.rhymeBlock;
-      console.log("currentList", currentList, action);
       const newList = currentList.filter(elem => {
-        console.log(elem);
         if (action.indexSentence == elem.indexSentence) {
           if (action.index - 1 == elem.index) {
             return false;
@@ -70,7 +86,6 @@ function reducer(
         }
         return true;
       });
-      console.log("newList", newList);
       return {
         ...state,
         rhymeBlock: newList

@@ -15,13 +15,14 @@ class RhymeList extends Component {
     const sortedRhymes = this.props.content.sort((a, b) => {
       return a.index - b.index;
     });
-    console.log(sortedRhymes);
     return (
       <div
         className={classes.root}
         style={{
           backgroundColor:
-            (sortedRhymes[0].indexSentence + 1) % 2 == 1 ? "#212121" : "#303030"
+            (sortedRhymes[0].indexSentence + 1) % 2 === 1
+              ? "#212121"
+              : "#303030"
         }}
       >
         <div className={classes.index}>
@@ -47,13 +48,11 @@ class RhymeList extends Component {
                             );
                           })}
                       </div>
+                      <WhiteSpace />
                       <div className={classes.wordText}>{elem.word}</div>
                       <WhiteSpace />
                       <div className={classes.wordContainer}>
-                        <VowContainer
-                          isClicked={this.props.isClicked}
-                          elem={elem}
-                        />
+                        <VowContainer elem={elem} />
                       </div>
                     </div>
                   </Grow>
@@ -63,6 +62,7 @@ class RhymeList extends Component {
           ) : (
             <CircularProgress />
           )}
+          <div></div>
         </div>
       </div>
     );
@@ -86,14 +86,14 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "1.2em",
+    fontSize: "0.7em",
     fontFamily: "NotoSans"
   },
   wordText: {
-    fontSize: "1.5em",
+    fontSize: "1em",
     fontFamily: "Barlow",
     fontWeight: "bold",
-    color: "black",
+    color: "white",
     marginTop: "-5px"
   },
   rhymeContainer: {
@@ -104,17 +104,17 @@ const style = {
   },
   word: {
     fontSize: "1em",
-    color: "black",
+    color: "white",
     fontFamily: "Montserrat",
-    padding: "5px",
+    // padding: "5px",
     display: "flex",
     flexDirection: "column ",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
     margin: "5px",
-    backgroundColor: "#eeeeee",
-    borderRadius: "25px",
-    height: "100px"
+    // backgroundColor: "#eeeeee",
+    borderRadius: "25px"
+    // height: "100px"
   },
   item: {
     fontSize: "0.7em",
@@ -131,16 +131,15 @@ const style = {
     flexDirection: "column"
   },
   index: {
-    height: "120px",
+    // height: "120px",
     color: "white",
     fontSize: "1.2em",
     fontWeight: "bold",
-
-    marginRight: "10px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: "20px"
+    marginLeft: "30px",
+    marginRight: "20px"
   },
   originalVow: {
     fontSize: "1.6em",

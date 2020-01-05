@@ -52,7 +52,6 @@ function MainInput(props) {
           } else if (key === "backspace") {
             var sliced = word.slice(0, -1);
             var slicedSize = sliced.split(/[\s,'’"-;]+/).length;
-            console.log(slicedSize, countWord);
             if (word[word.length] !== " " && slicedSize < countWord) {
               dispatch({
                 type: "DELETE_WORD",

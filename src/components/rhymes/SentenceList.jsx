@@ -3,32 +3,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Panel from "../panels/Panel";
 import RhymeList from "./RhymeList";
-
-var groupBy = function(xs, key) {
-  return xs.reduce(function(rv, x) {
-    (rv[x[key]] = rv[x[key]] || []).push(x);
-    return rv;
-  }, {});
-};
+import { groupBy } from "../../shared/Tools";
+import { closePanel } from "../actions";
 
 class SentenceList extends Component {
-  state = {
-    open: false
-  };
-
-  wordIsClicked = word => {
-    this.setState(() => ({
-      open: true,
-      value: word
-    }));
-  };
-
-  setPanelClose() {
-    this.setState(() => ({
-      open: false
-    }));
-  }
-
   render() {
     const { classes } = this.props;
     const sortedRhymes = this.props.rhymeBlock.sort((a, b) => {
@@ -38,27 +16,14 @@ class SentenceList extends Component {
     return sortedRhymes.length > 0 ? (
       <div className={classes.root}>
         {Object.keys(sentences).map(key => {
-          return (
-            <RhymeList
-              content={sentences[key]}
-              isClicked={this.wordIsClicked}
-            />
-          );
+          return <RhymeList content={sentences[key]} />;
         })}
-        <Panel
-          value={this.state.value}
-          close={() => this.setPanelClose()}
-          open={this.state.open}
-        />
+        <Panel />
       </div>
     ) : (
       <div className={classes.noSentence}>
         Type your text directly or paste lyrics with ctrl + v
-        <Panel
-          value={this.state.value}
-          close={() => this.setPanelClose()}
-          open={this.state.open}
-        />
+        <Panel />
       </div>
     );
   }
@@ -68,7 +33,7 @@ const style = {
   noSentence: {
     display: "flex",
     color: "white",
-    fontSize: "3em",
+    fontSize: "2em",
     fontFamily: "Barlow",
     alignItems: "center",
     justifyContent: "center",
@@ -99,7 +64,8 @@ const style = {
 
 export default connect(
   state => ({
-    rhymeBlock: state.rhymeBlock
+    rhymeBlock: state.rhymeBlock,
+    open: state.panelOpen
   }),
-  {}
+  { closePanel }
 )(withStyles(style)(SentenceList));

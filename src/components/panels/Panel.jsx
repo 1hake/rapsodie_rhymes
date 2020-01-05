@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Component, default as React } from "react";
 import { connect } from "react-redux";
 import { vowVerbos } from "../../constants/pattern";
-import { storeWord } from "../actions";
+import { storeWord, closePanel } from "../actions";
 import { rhymeColorMatch } from "../../constants/rhymeColorMatch";
 
 class Panel extends Component {
@@ -41,16 +41,16 @@ class Panel extends Component {
     });
     this.props.storeWord(this.props.value, pattern);
     this.resetState();
-    this.props.close();
+    this.props.closePanel();
   }
 
   render() {
     const { classes } = this.props;
     return (
       <Dialog
-        open={this.props.open}
+        open={this.props.value}
         onClose={() => {
-          this.props.close();
+          this.props.closePanel();
           this.resetState();
         }}
         PaperProps={{
@@ -184,7 +184,7 @@ const style = {
   }
 };
 
-export default connect(
-  state => ({}),
-  { storeWord }
-)(withStyles(style)(Panel));
+export default connect(state => ({ value: state.panelOpen }), {
+  storeWord,
+  closePanel
+})(withStyles(style)(Panel));
