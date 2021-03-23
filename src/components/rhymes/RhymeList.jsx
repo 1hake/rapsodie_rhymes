@@ -22,7 +22,7 @@ class RhymeList extends Component {
           backgroundColor:
             (sortedRhymes[0].indexSentence + 1) % 2 === 1
               ? "#212121"
-              : "#303030"
+              : "#303030",
         }}
       >
         <div className={classes.index}>
@@ -62,7 +62,7 @@ class RhymeList extends Component {
           ) : (
             <CircularProgress />
           )}
-          <div></div>
+          <div />
         </div>
       </div>
     );
@@ -77,30 +77,30 @@ const style = {
     flexWrap: "no-wrap",
     width: "100%",
     maxHeight: "150px",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   wordContainer: {
-    display: "flex"
+    display: "flex",
   },
   orignalContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "0.7em",
-    fontFamily: "NotoSans"
+    fontFamily: "NotoSans",
   },
   wordText: {
     fontSize: "1em",
     fontFamily: "Barlow",
     fontWeight: "bold",
     color: "white",
-    marginTop: "-5px"
+    marginTop: "-5px",
   },
   rhymeContainer: {
     display: "flex",
     flexWrap: "wrap",
     alignItems: "flex-start",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
   },
   word: {
     fontSize: "1em",
@@ -113,7 +113,7 @@ const style = {
     justifyContent: "flex-start",
     margin: "5px",
     // backgroundColor: "#eeeeee",
-    borderRadius: "25px"
+    borderRadius: "25px",
     // height: "100px"
   },
   item: {
@@ -128,7 +128,7 @@ const style = {
     margin: "2px",
     display: "flex",
     justifyContent: "center",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   index: {
     // height: "120px",
@@ -139,24 +139,24 @@ const style = {
     alignItems: "center",
     justifyContent: "center",
     marginLeft: "30px",
-    marginRight: "20px"
+    marginRight: "20px",
   },
   originalVow: {
     fontSize: "1.6em",
     color: "black",
     fontWeight: "bold",
-    fontFamily: "Barlow"
+    fontFamily: "Barlow",
   },
   convertVow: {
     fontSize: "1.2em",
     color: "white",
-    fontFamily: "Barlow"
-  }
+    fontFamily: "Barlow",
+  },
 };
 
 export default connect(
-  state => ({
-    rhymeBlock: state.rhymeBlock
+  (state) => ({
+    rhymeBlock: state.rhymeBlock,
   }),
   {}
 )(withStyles(style)(RhymeList));

@@ -71,11 +71,11 @@ function updateMatches(matchs, punch, i) {
 
 function plainRhymes(last) {
   const arr = [];
-  Object.keys(last).map(key => {
+  Object.keys(last).map((key) => {
     var rhymes = [];
-    Object.keys(last[key]).map(newKey => {
+    Object.keys(last[key]).map((newKey) => {
       last[key][newKey].rhymes &&
-        last[key][newKey].rhymes.map(item => {
+        last[key][newKey].rhymes.map((item) => {
           rhymes.push(item.replace(consPattern, ""));
         });
     });
@@ -90,34 +90,25 @@ function extractLastX(list, n) {
 
 export function patternize(rhymeBlock, window) {
   const sentences = groupBy(rhymeBlock, "indexSentence");
-  Object.keys(sentences).map(key => {
+  Object.keys(sentences).map((key) => {
     return sentences[key].sort((a, b) => {
       return a.index - b.index;
     });
   });
-  Object.keys(sentences).map(key => {
-    return sentences[key].map(item => {
-      if (item.match(consPattern)) {
-        return item;
-      }
-    });
-  });
+  // Object.keys(sentences).map((key) => {
+  //   return sentences[key].map((item) => {
+  //     if (item.match(consPattern)) {
+  //       return item;
+  //     }
+  //   });
+  // });
   const plained = plainRhymes(sentences);
   var maxRhymeLen = 3;
-  var plainExtracted = plained.map(item => {
+  var plainExtracted = plained.map((item) => {
     return extractLastX(item, maxRhymeLen);
   });
   var matches = matchRhymes(plainExtracted, maxRhymeLen);
   console.log("OBJECT", matches);
 
-  return dispatch => dispatch({ type: "ADD_MATCHES", data: null });
-
-  // console.log("sentence", sentences);
-  // // const lastRhymes = Object.keys(sentences).map(key => {
-  // //   return extractLastX(sentences[key], 4);
-  // // });
-  // var extractedlastRhymes = plainRhymes(sentences);
-
-  // console.log("test", extractedlastRhymes);
-  // return null;
+  return (dispatch) => dispatch({ type: "ADD_MATCHES", data: matches });
 }

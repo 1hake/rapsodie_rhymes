@@ -18,7 +18,7 @@ const style = {
     margin: "2px",
     display: "flex",
     justifyContent: "center",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   noItem: {
     fontSize: "0.5em",
@@ -33,42 +33,43 @@ const style = {
     marginLeft: "5px",
     display: "flex",
     justifyContent: "center",
-    boxShadow: "0px 2px 21px -5px rgba(0,0,0,0.75)"
+    boxShadow: "0px 2px 21px -5px rgba(0,0,0,0.75)",
   },
   originalVow: {
     fontSize: "1.6em",
     color: "black",
 
-    fontFamily: "Barlow"
+    fontFamily: "Barlow",
   },
   convertVow: {
     fontSize: "1.2em",
     color: "white",
-    fontFamily: "NotoSans"
-  }
+    fontFamily: "NotoSans",
+  },
 };
 
 class MatchesContainer extends Component {
   render() {
     const { matches, classes } = this.props;
-
+    console.log(matches);
     return (
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection: "column"
+          flexDirection: "column",
         }}
       >
         {matches &&
-          matches.map(match => (
+          matches.matchedPunch &&
+          matches.matchedPunch.map((match) => (
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "90%"
+                width: "90%",
               }}
             >
               {match.map((vow, index) => (
@@ -81,7 +82,7 @@ class MatchesContainer extends Component {
                       height: "50px",
                       justifyContent: "center",
                       alignItems: "center",
-                      marginBottom: "10px"
+                      marginBottom: "10px",
                     }}
                   >
                     <div className={classes.originalVow}>{vowVerbos[vow]}</div>
@@ -98,6 +99,6 @@ class MatchesContainer extends Component {
 }
 
 export default connect(
-  state => ({ matches: state.matches }),
+  (state) => ({ matches: state.matches }),
   {}
 )(withStyles(style)(MatchesContainer));
